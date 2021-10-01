@@ -1,14 +1,14 @@
 package com.example.onlinephoneshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -17,12 +17,16 @@ import javax.persistence.Table;
 @Table(name = "categories")
 public class Category {
     @Id
-    @Column
+    @Column(length = 8)
     private String categoryId;
 
-    @Column
+    @Column(columnDefinition = "nvarchar", length = 30)
     private String categoryName;
 
-    @Column
+    @Column(columnDefinition = "nvarchar")
     private String description;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Product> products;
 }

@@ -42,13 +42,13 @@ public class Rating extends AuditModel {
         private String userId;
         @Column
         @NotNull
-        private String phoneId ;
+        private String productId ;
     }
 
     @ManyToOne
-    @JoinColumn(name="phoneId", insertable = false, updatable = false)
+    @JoinColumn(name="productId", insertable = false, updatable = false)
     @JsonIgnore
-    private Phone phone;
+    private Product product;
 
     @ManyToOne
     @JoinColumn(name="userId", insertable = false, updatable = false)

@@ -45,7 +45,7 @@ public class User extends AuditModel{
     @JsonIgnore
     private String password;
 
-    @Column
+    @Column(columnDefinition = "nvarchar", length = 40)
     @NotEmpty
     private String fullName;
 
@@ -57,7 +57,7 @@ public class User extends AuditModel{
     @Column
     private String phoneNumber;
 
-    @Column
+    @Column(columnDefinition = "nvarchar", length = 200)
     private String address;
 
     @Column

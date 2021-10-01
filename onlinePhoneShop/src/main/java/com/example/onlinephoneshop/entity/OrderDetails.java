@@ -40,7 +40,7 @@ public class OrderDetails {
         @Column
         private String orderId;
         @Column
-        private String phoneId ;
+        private String productId ;
     }
 
     // Specify order details relationship
@@ -50,7 +50,7 @@ public class OrderDetails {
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name="phoneId", insertable = false, updatable = false)
+    @JoinColumn(name="productId", insertable = false, updatable = false)
     @JsonIgnore
-    private Phone phone;
+    private Product product;
 }
