@@ -1,6 +1,6 @@
 package com.example.onlinephoneshop.entity;
 
-import ch.qos.logback.core.boolex.EvaluationException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -21,7 +22,7 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long manufacturerId;
 
-    @Column
+    @Column(columnDefinition = "nvarchar", length = 50)
     @NotBlank
     private String manufacturerName;
 
@@ -29,12 +30,16 @@ public class Manufacturer {
     @Email
     private String email;
 
-    @Column
+    @Column(columnDefinition = "nvarchar")
     private String address;
 
     @Column
     private String phoneNumber;
 
-    @Column
+    @Column(columnDefinition = "nvarchar", length = 20)
     private String country;
+
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Product> products;
 }

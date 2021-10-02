@@ -28,11 +28,18 @@ public enum CustomMessages {
     ASSIGN_DATE_INVALID("The assigned date being updated can not be before the current assigned date"),
     ASSIGNMENT_NON_EDITABLE("Only assignment in waiting for acceptance can be edited!"),
     ASSET_NOT_FOUND("Asset with id %s not found"),
-    CATEGORY_NAME_EXISTED("Category name has existed"),
-    CATEGORY_ID_EXISTED("Category id has existed"),
-    CATEGORY_PREFIX_NULL("Category prefix is null"),
+    CATEGORY_NAME_EXISTED("This category name has already been existed!"),
+    CATEGORY_ID_EXISTED("This category id has already been existed!"),
     CATEGORY_NOT_FOUND("Category with Id %s not found"),
-    NOT_DELETE_CATEGORY("Can not delete category has product");
+    NOT_DELETE_CATEGORY("Can not delete category has products"),
+    BRAND_NOT_FOUND("Brand not be found!"),
+    BRAND_ID_EXISTED("This brand id has already been existed!"),
+    BRAND_NAME_EXISTED("This brand name has already been existed!"),
+    NOT_DELETE_BRAND("Can not delete brand has products"),
+    MANUFACTURER_NOT_FOUND("Manufacturer not be found!"),
+    MANUFACTURER_ID_EXISTED("This manufacturer id has already been existed!"),
+    MANUFACTURER_NAME_EXISTED("This manufacturer name has already been existed!"),
+    NOT_DELETE_MANUFACTURER("Can not delete manufacturer has products");
 
     private final String description;
 

@@ -9,6 +9,7 @@ import com.example.onlinephoneshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/admin/categories")
 public class AdminCategoryController {
@@ -23,7 +25,7 @@ public class AdminCategoryController {
     CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<User> insertCategory(@Valid @RequestBody Category category){
+    public ResponseEntity<?> insertCategory(@Valid @RequestBody Category category){
         Boolean existed = categoryService.existsById(category.getCategoryId());
         if(existed) throw new ResourceAlreadyExistedException(CustomMessages.CATEGORY_ID_EXISTED.getDescription());
 
@@ -42,6 +44,7 @@ public class AdminCategoryController {
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<Category> updateCategory(@Valid @RequestBody Category category, @PathVariable String id) {
         return new ResponseEntity<Category>(categoryService.updateCategory(category, id), HttpStatus.OK);
     }
